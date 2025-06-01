@@ -29,8 +29,8 @@ const Signup: React.FC = () => {
     try {
       await signup(email, password);
       alert('Signup successful! You can now log in.');
-      // navigate to dashbard page after successful signup
       navigate('/dashboard');
+      
     } catch (err: any) {
       setError(err.message || 'Failed to sign up');
     } finally {

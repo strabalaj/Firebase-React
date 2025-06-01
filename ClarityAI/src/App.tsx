@@ -25,7 +25,7 @@ const App: React.FC = () => {
 
       {/* Protect Dashboard route */}
       <Route
-        path="/"
+        path="/dashboard"
         element={
           <PrivateRoute>
             <Dashboard />

@@ -20,8 +20,8 @@ const Login: React.FC = () => {
     try {
       await login(email, password);
       alert('Logged in successfully!');
-      // wait to navigate to dashboard
-      //navigate('/dashboard');
+      navigate('/dashboard');
+
     } catch (err: any) {
       setError(err.message || 'Failed to log in');
     } finally {
@@ -30,12 +30,6 @@ const Login: React.FC = () => {
   };
 
   
-  useEffect(() => {
-    if (currentUser) {
-      navigate('/dashboard');
-    }
-  }, [currentUser, navigate]);
-
   return (
     <div style={{ maxWidth: 400, margin: '2rem auto' }}>
       <h2>Log In</h2>
