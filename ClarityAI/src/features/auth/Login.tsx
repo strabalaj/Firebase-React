@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from './useAuth';
 
+
 const Login: React.FC = () => {
-  const { login } = useAuth();
+  const { login, currentUser } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ const Login: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
@@ -19,8 +20,8 @@ const Login: React.FC = () => {
     try {
       await login(email, password);
       alert('Logged in successfully!');
-      // redirect to dashboard
-      navigate('/dashboard');
+      // wait to navigate to dashboard
+      //navigate('/dashboard');
     } catch (err: any) {
       setError(err.message || 'Failed to log in');
     } finally {
@@ -28,10 +29,17 @@ const Login: React.FC = () => {
     }
   };
 
+  
+  useEffect(() => {
+    if (currentUser) {
+      navigate('/dashboard');
+    }
+  }, [currentUser, navigate]);
+
   return (
     <div style={{ maxWidth: 400, margin: '2rem auto' }}>
       <h2>Log In</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <label>
           Email:
           <input

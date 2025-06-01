@@ -37,6 +37,7 @@ interface AuthContextType {
     login: (email: string, password: string) => Promise<UserCredential>;
     signup: (email: string, password: string) => Promise<UserCredential>;
     logout: () => Promise<void>;
+    loading: boolean;
 }
 
 // Create the Auth Context
@@ -76,6 +77,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
     login,
     signup,
     logout,
+    loading,
   };
 
   return (

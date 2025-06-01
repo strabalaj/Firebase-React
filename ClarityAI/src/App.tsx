@@ -6,7 +6,10 @@ import Dashboard from './features/dashboard/Dashboard';
 import { useAuth } from './features/auth/useAuth';
 
 function PrivateRoute({ children }: { children: React.ReactElement }) {
-  const { currentUser } = useAuth();
+  const { currentUser, loading } = useAuth();
+  if (loading) {
+    return <div>Loading...</div>; 
+  }
   if (!currentUser) {
     return <Navigate to="/login" replace />;
   }
