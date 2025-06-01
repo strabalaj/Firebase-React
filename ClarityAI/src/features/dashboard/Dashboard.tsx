@@ -1,6 +1,8 @@
 import React from 'react';
 import { useAuth } from '../auth/useAuth';
 import { useNavigate } from 'react-router-dom';
+import PlaidLink from '../finance/PlaidLink';
+import PlaidLinkWrapper from '../finance/PlaidLinkWrapper';
 
 const Dashboard: React.FC = () => {
   const { currentUser, loading, logout } = useAuth();
@@ -25,6 +27,8 @@ const Dashboard: React.FC = () => {
     <div style={{ maxWidth: 600, margin: '2rem auto', textAlign: 'center' }}>
       <h1>Welcome to the Dashboard, {currentUser?.email}</h1>
       <p>You are logged in!</p>
+      {/* Plaid integration here */}
+      <PlaidLinkWrapper />
       <button onClick={handleLogout}>Log Out</button>
     </div>
   );

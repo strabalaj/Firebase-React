@@ -23,9 +23,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+
 // images/files: export const storage = getStorage(app);
 if (import.meta.env.MODE === 'production') {
   getAnalytics(app);
